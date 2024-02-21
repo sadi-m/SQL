@@ -1,22 +1,63 @@
 ### AL ###
-#Template for AL projects for Dynamics 365 Business Central
-#launch.json folder
-.vscode/
-#Cache folder
-.alcache/
-#Symbols folder
-.alpackages/
-#Snapshots folder
-.snapshots/
-#Testing Output folder
-.output/
-#Extension App-file
-*.app
-#Rapid Application Development File
-rad.json
-#Translation Base-file
-*.g.xlf
-#License-file
-*.flf
-#Test results file
-TestResults.xml
+from auto_info import *
+from typing import List
+
+def find_by_surname_NT(data: List[AutoInfoNamedTuple], auto_surname: str) -> List[AutoInfoNamedTuple]:
+    """Finds all surname with given name"""
+    return [item for item in data if item.surname == auto_surname]
+
+def find_by_code_mark_auto_NT(data: List[AutoInfoNamedTuple], auto_code_mark_auto: int) -> List[AutoInfoNamedTuple]:
+    """Finds all code mark auto with given name"""
+    return [item for item in data if item.code_mark_auto == auto_code_mark_auto]
+
+def find_by_engine_power_NT(data: List[AutoInfoNamedTuple], auto_engine_power: int) -> List[AutoInfoNamedTuple]:
+    """Finds all engine power with given name"""
+    return [item for item in data if item.engine_power == auto_engine_power]
+
+def find_by_surname_TD(data: List[AutoInfoTypedDict], auto_surname: str) -> List[AutoInfoTypedDict]:
+    """Finds all surname with given name"""
+    return [item for item in data if item['surname'] == auto_surname]
+
+def find_by_code_mark_auto_TD(data: List[AutoInfoTypedDict], auto_code_mark_auto: int) -> List[AutoInfoTypedDict]:
+    """Finds all code mark auto with given name"""
+    return [item for item in data if item['code_mark_auto'] == auto_code_mark_auto]
+
+def find_by_engine_power_TD(data: List[AutoInfoTypedDict], auto_engine_power: str) -> List[AutoInfoTypedDict]:
+    """Finds all engine power with given name"""
+    return [item for item in data if item['engine_power'] == auto_engine_power]
+
+def find_by_surname(data: List[AutoInfo], auto_surname: str) -> List[AutoInfo]:
+    """Finds all surname with given name"""
+    return [item for item in data if item.surname == auto_surname]
+
+def find_by_code_mark_auto(data: List[AutoInfo], auto_code_mark_auto: int) -> List[AutoInfo]:
+    """Finds all code mark auto with given name"""
+    return [item for item in data if item.code_mark_auto == auto_code_mark_auto]
+
+def find_by_engine_power(data: List[AutoInfo], auto_engine_power: str) -> List[AutoInfo]:
+    """Finds all engine power with given name"""
+    return [item for item in data if item.engine_power == auto_engine_power]
+
+if __name__ == "__main__":
+    #Auto_one = AutoInfo('Dallas', 1117, 'VAZ Lada Kalina', 92, 81, 50, 25, 3.1)
+    #Auto_two  = AutoInfo('Korben', 2015, 'KIA Rio', 92, 100, 43, 10, 3.5)
+    #Auto_three  = AutoInfo('Mirjonov', 2109, 'Vaz', 92, 78, 39 , 20 , 4 )
+    Auto_one = AutoInfoTypedDict(surname='Dallas', code_mark_auto=1117, mark_auto='VAZ Lada Kalina', fuel=92,
+                                 engine_power=81, tank_volume=50, gasoline_remaining=25, oil_volume=3.1)
+    Auto_two = AutoInfoTypedDict(surname='Korben', code_mark_auto=2015, mark_auto='KIA Rio', fuel=92,
+                                 engine_power=100, tank_volume=43, gasoline_remaining=10, oil_volume=3.5)
+    Auto_three = AutoInfoTypedDict(surname='Mirjonov', code_mark_auto=2109, mark_auto='Vaz', fuel=92,
+                                 engine_power=78, tank_volume=39, gasoline_remaining=20, oil_volume=4)
+    data = [Auto_one, Auto_two, Auto_three]
+
+    print(find_by_surname_TD(data, 'Dallas'))
+    print(find_by_surname_TD(data, 'Korben'))
+    print(find_by_surname_TD(data, 'Mirjonov'))
+
+    print(find_by_code_mark_auto_TD(data, 1117))
+    print(find_by_code_mark_auto_TD(data, 2015))
+    print(find_by_code_mark_auto_TD(data, 2109))
+    
+    print(find_by_engine_power_TD(data, 81))
+    print(find_by_engine_power_TD(data, 100))
+    print(find_by_engine_power_TD(data, 78))
